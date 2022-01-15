@@ -18,13 +18,16 @@ public class ArkanoidController : MonoBehaviour
     public int _totalScore = 0;
     
     private Ball _ballPrefab = null;
-    private List<Ball> _balls = new List<Ball>();
+    
+    [SerializeField]
+    public List<Ball> _balls = new List<Ball>();
     
     
     private void Start()
     {
         ArkanoidEvent.OnBallReachDeadZoneEvent += OnBallReachDeadZone;
         ArkanoidEvent.OnBlockDestroyedEvent += OnBlockDestroyed;
+
     }
 
     private void OnDestroy()
@@ -73,7 +76,7 @@ public class ArkanoidController : MonoBehaviour
         for (int i = _balls.Count - 1; i >= 0; i--)
         {
             _balls[i].gameObject.SetActive(false);
-            Destroy(_balls[i]);
+            Destroy(_balls[i].gameObject);
         }
         
         _balls.Clear();

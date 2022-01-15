@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D _rb;
     private Collider2D _collider;
 
+    private ArkanoidController _ark;
+
     public void Start()
     {
         Init();
@@ -23,6 +25,8 @@ public class Ball : MonoBehaviour
         
         _collider.enabled = true;
         _rb.velocity = Random.insideUnitCircle.normalized * _initSpeed;
+        _ark = GameObject.Find("GridController").GetComponent<ArkanoidController>();
+        _ark._balls.Add(this);
     }
     
     void FixedUpdate()
